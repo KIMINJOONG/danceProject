@@ -1,11 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<script src="resources/dist/sweetalert2.all.min.js"></script>
+
+<link rel="stylesheet" href="resources/bootstrap-3.3.2-dist/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/dist/sweetalert2.css">
+<link rel="stylesheet" href="resources/bootstrap-3.3.2-dist/bootstrap/css/bootstrap-theme.min.css">
+
+
+<script src="resources/bootstrap-3.3.2-dist/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="resources/css/mainCss.css">
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+	
+	jQuery("#write_ajax").click(function() {
+		var boardVo = {
+				boardSeq : document.getElementById("boardSeq").value
+			  , subject : document.getElementById("subject").value
+			  , contents : document.getElementById("contents").value
+		}
+		jQuery.ajax({
+			 type: "POST"
+		   , url : "write.do"
+		   , data : boardVo
+		   , success : function(data) {
+			   console.log(data);
+			   var okMessage = data.okMessage;
+			   swal(okMessage,' ','success');
+		   }
+		   , error : function(error) {
+			   alert(error);
+		   }
+		});	
+	});
+	
+});
+
+</script>
 <style>
     ul, li {
         list-style: none;
@@ -20,15 +59,16 @@
            <ul>
                <li>
                    <label for="subject">
-                       	¡¶∏Ò
+                       	Ï†úÎ™©
                    </label>
                    <div>
                        <input type="text" style="width: 478px; height: 27px; " id="subject" name="subject"/>
+                       <input type="hidden" id="boardSeq" value="-1" />
                    </div>
                    
                </li>
                <li>
-                   	≥ªøÎ
+                   	ÎÇ¥Ïö©
                </li>
                <li>
                    <div>
@@ -39,10 +79,10 @@
            <ul>
                <li style="text-align: right">
                    <div>
-                       <button onclick="insertBoard();">µÓ∑œ</button>
+                       <a id="write_ajax">Îì±Î°ù</a>
                    </div>
                    <div>
-                       <button>√Îº“</button>
+                       <button>Ï∑®ÏÜå</button>
                    </div>
                </li>
            </ul>

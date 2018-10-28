@@ -92,7 +92,7 @@
         <ul>
             <!-- 게시판 제목 -->
             <li>게시판 Title </li>
-
+			<li style="text-align: right;"><span><a href="writeBoard.do">등록</a></span></li>
             <!-- 게시판 목록  -->
             <li>
                 Table

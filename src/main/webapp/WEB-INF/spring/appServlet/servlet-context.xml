@@ -33,6 +33,12 @@
 	    <beans:property name="order" value="1"></beans:property>
 	</beans:bean>
 	
-	<context:component-scan base-package="com.dance.controller" />
-	<context:component-scan base-package="com.dance.service"></context:component-scan>
+	<context:component-scan base-package="com.dance.member, board" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<context:component-scan base-package="com.dance.member.service, board.service"></context:component-scan>
+	<!-- <context:component-scan base-package="board" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<context:component-scan base-package="board.service"></context:component-scan> -->
 </beans:beans>
